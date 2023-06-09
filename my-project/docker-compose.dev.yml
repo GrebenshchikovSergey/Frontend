@@ -11,3 +11,20 @@ services:
    - .:/app
    - /app/node_modules
   command: sh -c "npm run dev"
+  networks:
+    - test_project
+
+ db:
+  image: postgres:latest
+  restart: always
+  environment:
+   POSTGRES_USER: postgres
+   POSTGRES_PASSWORD: 1234
+   POSTGRES_DB: postgres
+  ports:
+   - "5432:5432"
+  networks:
+    - test_project
+
+networks:
+  test_project:
