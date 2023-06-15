@@ -26,7 +26,11 @@ services:
    - "5432:5432"
   networks:
    - test_project
-  
+  volumes:
+   - mydata:/var/lib/postgresql/data
+
+volumes:
+ mydata: {}
 
 networks:
  test_project:
