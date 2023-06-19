@@ -1,7 +1,12 @@
+import PageLayout from "@/components/PageLayout";
 import React from "react";
 
 const contact = () => {
-	return <div>contact</div>;
+	return (
+		<PageLayout>
+			<div>contact</div>
+		</PageLayout>
+	);
 };
 
 export default contact;

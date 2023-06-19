@@ -1,20 +1,6 @@
-import Link from "next/link";
+import PageLayout from "@/components/PageLayout";
 function Home() {
-	return (
-		<>
-			<h1>Home</h1>
-			<nav>
-				<ul>
-					<li>
-						<Link href="/users">Users</Link>
-					</li>
-					<li>
-						<Link href="/contact">Contact</Link>
-					</li>
-				</ul>
-			</nav>
-		</>
-	);
+	return <PageLayout></PageLayout>;
 }
 
 export default Home;

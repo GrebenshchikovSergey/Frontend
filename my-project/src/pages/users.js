@@ -1,6 +1,7 @@
 import { useState, } from "react";
 import pool from "./api/db";
 import { useRouter } from "next/router";
+import PageLayout from "@/components/PageLayout";
 export default function Users({ users }) {
 	console.log('rerender')
 	const [firstName, setFirstName] = useState("");
@@ -27,29 +28,31 @@ export default function Users({ users }) {
 	};
 
 	return (
-		<div>
-			<h1>Users</h1>
-			<ul>
-				{users.map((user) => (
-					<li key={user.id}>
-						{user.first_name} {user.last_name}
-					</li>
-				))}
-			</ul>
-			<form onSubmit={handleSubmit}>
-				<label>
-					First Name:
-					<input type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} />
-				</label>
-				<br />
-				<label>
-					Last Name:
-					<input type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} />
-				</label>
-				<br />
-				<button type="submit">Add User</button>
-			</form>
-		</div>
+		<PageLayout>
+			<div>
+				<h1>Users</h1>
+				<ul>
+					{users.map((user) => (
+						<li key={user.id}>
+							{user.first_name} {user.last_name}
+						</li>
+					))}
+				</ul>
+				<form onSubmit={handleSubmit}>
+					<label>
+						First Name:
+						<input type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} />
+					</label>
+					<br />
+					<label>
+						Last Name:
+						<input type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} />
+					</label>
+					<br />
+					<button type="submit">Add User</button>
+				</form>
+			</div>
+		</PageLayout>
 	);
 }
 

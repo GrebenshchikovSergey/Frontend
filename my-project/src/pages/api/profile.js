@@ -1,11 +1,11 @@
 import pool from "./db";
 
 export default async function handler(req, res) {
-	if (req.method === "POST") {
+	if (req.method === "GET") {
+		console.log(req.headers)
 		try {
-			const { first_name, last_name } = req.body;
-			await pool.query("INSERT INTO users (first_name, last_name) VALUES ($1, $2)", [first_name, last_name]);
-			res.status(201).json({ success: true });
+			const result = await pool.query("SELECT * FROM regusers ", []);
+			res.status(201).json(result.rows[0]);
 		} catch (err) {
 			console.error(err);
 			res.status(500).json({ success: false });
