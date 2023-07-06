@@ -4,3 +4,6 @@ export const LSget = (name) => {
 export const LSset = (name, item) => {
 	return localStorage.setItem(name, item)
 }
+export const LSdelete = (item) => {
+	return localStorage.removeItem(item)
+}

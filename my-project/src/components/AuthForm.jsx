@@ -30,21 +30,25 @@ const AuthForm = () => {
 					// return errors;
 				}}
 				onSubmit={async (values) => {
-					try {
-						const response = await fetch("/api/login", {
-							method: "POST",
-							headers: { "Content-Type": "application/json" },
-							body: isReg
-								? JSON.stringify({ email: values.email, password: values.password, hash: generateRandomString(12) })
-								: JSON.stringify({ email: values.email, password: values.password }),
-						});
+					const response = await fetch("/api/login", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: isReg
+							? JSON.stringify({ email: values.email, password: values.password, hash: generateRandomString(12) })
+							: JSON.stringify({ email: values.email, password: values.password }),
+					});
+					if (response.status === 201) {
 						const data = await response.json();
-						console.log(data);
+						console.log("data", data);
+						setUserInfo(data);
 						LSset("myHash", data.hash);
+						alert(`${isReg ? "Регистрация успешна" : "Авторизация успешна"}`);
 						router.push("/profile");
-					} catch (err) {
-						console.error(err);
-						alert("Ошибка");
+					} else if (response.status === 402) {
+						alert(`Пользователь ${values.email} уже существует`);
+						throw new Error("Пользователь уже существует");
+					} else {
+						throw new Error("Ошибка сервера");
 					}
 				}}>
 				{({

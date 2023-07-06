@@ -3,7 +3,6 @@ import pool from "./api/db";
 import { useRouter } from "next/router";
 import PageLayout from "@/components/PageLayout";
 export default function Users({ users }) {
-	console.log('rerender')
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const router = useRouter();
